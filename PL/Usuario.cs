@@ -31,5 +31,32 @@ namespace PL
                 Console.WriteLine("Ocurrio un error");
             }
         }
+
+        public static void GetAll()
+        {
+
+            List<ML.Usuario> usuarios = BL.Usuario.GetAll();
+
+
+            if (usuarios.Count > 0) //Trae datos
+            {
+
+                foreach(ML.Usuario usuario in usuarios)
+                {
+                    Console.WriteLine("El id es: " +  usuario.IdUsuario);
+                    Console.WriteLine("El Nombre es: " +  usuario.Nombre);
+                    Console.WriteLine("-------------------------------------------");
+
+                    //Pintar todo lo demas
+                }
+            }
+            else
+            {
+                Console.WriteLine("La tabla esta vacia");
+            }
+
+        }
     }
+
+
 }

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -45,6 +47,52 @@ namespace BL
                 return false;
             }
             
+        }
+
+        public static List<ML.Usuario> GetAll()
+        {
+            List<ML.Usuario> usuarios = new List<ML.Usuario>();
+            try
+            {
+                using (SqlConnection context = new SqlConnection(DL.Conexion.Get()))
+                {
+                    string query = "SELECT [IdUsuario] ,[Nombre] ,[ApellidoPaterno] ,[ApellidoMaterno] FROM [Usuario]";
+
+                    SqlCommand cmd = new SqlCommand();
+                    cmd.Connection = context;
+                    cmd.CommandText = query;
+
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                    DataTable tablaUsuario = new DataTable();
+
+                    da.Fill(tablaUsuario);
+
+                    if(tablaUsuario != null)  //Trae datos
+                    {
+                       
+                        foreach (DataRow row in tablaUsuario.Rows)  //Tipodedato que almacena la lista : Lista
+                        {
+                            ML.Usuario usuario = new ML.Usuario();
+                            usuario.IdUsuario = int.Parse(row[0].ToString());
+                            usuario.Nombre = row[1].ToString();
+
+                            //Recuperar los demas datos
+
+                            usuarios.Add(usuario); // equivalente a datos.push(1)
+                        }
+                    }
+                    else //La tabla esta vacia
+                    {
+                        
+                    }
+                    
+
+                }
+            }catch(Exception ex) { 
+                
+            }
+            return usuarios;
         }
     }
 }
