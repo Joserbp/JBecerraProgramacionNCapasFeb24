@@ -20,7 +20,8 @@ namespace PL
             Console.WriteLine("Escriba el ApellidoMaterno");
             usuario.ApellidoMaterno = Console.ReadLine();
 
-            bool resultado = BL.Usuario.Add(usuario);
+            //bool resultado = BL.Usuario.Add(usuario);
+            bool resultado = BL.Usuario.AddSP(usuario);
 
             if (resultado)
             {
@@ -49,6 +50,31 @@ namespace PL
 
                     //Pintar todo lo demas
                 }
+            }
+            else
+            {
+                Console.WriteLine("La tabla esta vacia");
+            }
+
+        }
+
+        public static void GetById()
+        {
+            Console.WriteLine("ingrese el Id a buscar");
+            int idUsuario = int.Parse(Console.ReadLine());
+
+            ML.Usuario usuario = BL.Usuario.GetByIdSP(idUsuario);
+
+
+            if (usuario.IdUsuario != 0) //Trae datos
+            {
+
+                
+                    Console.WriteLine("El id es: " + usuario.IdUsuario);
+                    Console.WriteLine("El Nombre es: " + usuario.Nombre);
+                    Console.WriteLine("-------------------------------------------");
+
+
             }
             else
             {

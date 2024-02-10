@@ -11,7 +11,7 @@ namespace PL
         static void Main(string[] args)
         {
             //Switch
-            PL.Usuario.GetAll();
+            PL.Usuario.GetById();
         }
     }
 }
