@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="62a2e636f68d4c248d6fa0e320f55eac" Name="Diagram1">
+        <EntityTypeShape EntityType="JBecerraProgramacionNCapasFeb24Model.Colonia" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="JBecerraProgramacionNCapasFeb24Model.Direccion" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="JBecerraProgramacionNCapasFeb24Model.Estado" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="JBecerraProgramacionNCapasFeb24Model.Municipio" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="JBecerraProgramacionNCapasFeb24Model.Pai" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="JBecerraProgramacionNCapasFeb24Model.Usuario" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <AssociationConnector Association="JBecerraProgramacionNCapasFeb24Model.FK__Colonia__IdMunic__2B3F6F97" ManuallyRouted="false" />
+        <AssociationConnector Association="JBecerraProgramacionNCapasFeb24Model.FK__Colonia__IdMunic__34C8D9D1" ManuallyRouted="false" />
+        <AssociationConnector Association="JBecerraProgramacionNCapasFeb24Model.FK__Direccion__IdUsu__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="JBecerraProgramacionNCapasFeb24Model.FK__Estado__IdPais__2E1BDC42" ManuallyRouted="false" />
+        <AssociationConnector Association="JBecerraProgramacionNCapasFeb24Model.FK__Estado__IdPais__37A5467C" ManuallyRouted="false" />
+        <AssociationConnector Association="JBecerraProgramacionNCapasFeb24Model.FK__Municipio__IdEst__2F10007B" ManuallyRouted="false" />
+        <AssociationConnector Association="JBecerraProgramacionNCapasFeb24Model.FK__Municipio__IdEst__38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="JBecerraProgramacionNCapasFeb24Model.FK__Direccion__IdCol__3D5E1FD2" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

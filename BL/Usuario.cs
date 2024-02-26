@@ -43,14 +43,14 @@ namespace BL
                     return false;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return false;
             }
-            
+
         }
 
-       
+
         public static List<ML.Usuario> GetAll()
         {
             List<ML.Usuario> usuarios = new List<ML.Usuario>();
@@ -70,14 +70,15 @@ namespace BL
 
                     da.Fill(tablaUsuario);
 
-                    if(tablaUsuario != null)  //Trae datos
+                    if (tablaUsuario != null)  //Trae datos
                     {
-                       
+
                         foreach (DataRow row in tablaUsuario.Rows)  //Tipodedato que almacena la lista : Lista
                         {
                             ML.Usuario usuario = new ML.Usuario();
                             usuario.IdUsuario = int.Parse(row[0].ToString());
                             usuario.Nombre = row[1].ToString();
+                            usuario.ApellidoPaterno = row[2].ToString();
 
                             //Recuperar los demas datos
 
@@ -86,13 +87,15 @@ namespace BL
                     }
                     else //La tabla esta vacia
                     {
-                        
+
                     }
-                    
+
 
                 }
-            }catch(Exception ex) { 
-                
+            }
+            catch (Exception ex)
+            {
+
             }
             return usuarios;
         }
@@ -166,10 +169,11 @@ namespace BL
                     {
 
                         DataRow row = tablaUsuario.Rows[0];
-                        
+
                         usuario.IdUsuario = int.Parse(row[0].ToString());
                         usuario.Nombre = row[1].ToString();
-             
+                        usuario.ApellidoPaterno = row[2].ToString();
+
                     }
                     else //La tabla esta vacia
                     {
@@ -184,6 +188,37 @@ namespace BL
 
             }
             return usuario;
+        }
+
+        public static List<ML.Usuario> GetAllEF()
+        {
+            List<ML.Usuario> usuarios = new List<ML.Usuario>();
+            try
+            {
+                using (DL_EF.JBecerraProgramacionNCapasFeb24Entities context = new DL_EF.JBecerraProgramacionNCapasFeb24Entities())
+                {
+                    var ObjUsuarios = context.UsuarioGetAll().ToList();
+
+                    foreach (var objUsuario in ObjUsuarios)  //Tipodedato que almacena la lista : Lista
+                    {
+                        ML.Usuario usuario = new ML.Usuario();
+                        usuario.IdUsuario = objUsuario.IdUsuario;
+                        usuario.Nombre = objUsuario.NombreUsuario;
+                        usuario.Direccion = new ML.Direccion();
+                        usuario.Direccion.Calle = objUsuario.Calle;
+                        usuario.Direccion.Colonia = new ML.Colonia();
+                        usuario.Direccion.Colonia.IdColonia = objUsuario.IdColonia.Value;
+                        usuario.Direccion.Colonia.Nombre = objUsuario.NombreColonia;
+
+                        usuarios.Add(usuario);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return usuarios;
         }
     }
 }

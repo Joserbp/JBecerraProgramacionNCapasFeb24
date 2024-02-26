@@ -1,0 +1,65 @@
+﻿@model ML.Usuario 
+@{
+    ViewBag.Title = "GetAll";
+}
+
+<h2>GetAll</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Usuario</h2>
+            <Hr />
+        </div>
+
+    </div>
+
+</div>
+<Br />
+
+
+<div class="container">
+
+
+    <div class="row">
+        <div class="col-md-10">
+
+        </div>
+        <div class="col-md-1" style="padding-left:100px">
+            <a href="@Url.Action("Form","Usuario")" class="btn btn-success">Agregar</a>
+        </div>
+    </div>
+
+    <Br />
+    <div class="fila">
+        <div class="col-md-12">
+            <table class="table table-bordered" border="1">
+                <thead>
+                    <tr>
+                        <th class="text-center" scope="col">Editar</th>
+                        <th class="text-center" scope="col">IdUsuario</th>
+                        <th class="text-center" scope="col">Nombre</th>
+                        <th class="text-center" scope="col">Apellido Paterno</th>
+                        <th class="text-center" scope="col">Direccion</th>
+                        <th class="text-center" scope="col">Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (ML.Usuario usuario in Model.Usuarios)
+                    {
+                        <tr>
+                            <td class="text-center" scope="col"><button class="btn btn-warning"> <i></i></button></td>
+                            <td class="text-center" scope="col">@usuario.IdUsuario</td>
+                            <td class="text-center" scope="col">@usuario.Nombre</td>
+                            <td class="text-center" scope="col">@usuario.ApellidoPaterno</td>
+                            <td class="text-center" scope="col">@usuario.Direccion.Calle + ',' + @usuario.Direccion.NumeroExterior @usuario.Direccion.Colonia.Nombre</td>
+                            <td class="text-center" scope="col"><button class="btn btn-danger"></button></td>
+                        </tr>
+                }
+                    </tbody>
+                </table>
+        </div>
+    </div>
+
+</div>
+

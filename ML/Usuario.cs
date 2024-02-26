@@ -12,5 +12,7 @@ namespace ML
         public string Nombre { get; set; }
         public string ApellidoPaterno { get; set; }
         public string ApellidoMaterno { get; set; }
+        public ML.Direccion Direccion { get; set; }
+        public List<ML.Usuario> Usuarios { get; set; }
     }
 }

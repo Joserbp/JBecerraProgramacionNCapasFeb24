@@ -1,0 +1,30 @@
+﻿@model ML.Usuario
+
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm("Form", "Usuario", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.LabelFor(model => model.ApellidoMaterno, new { @class = "", @placeholder = "Nombre Usuario" })
+    <div class="input-group">
+        <span class="input-group-addon glyphicon glyphicon-pencil"  id="basic-addon1">@@</span>
+        @Html.TextBoxFor(model => model.Nombre, new { @class = "", @placeholder = "Nombre Usuario" })
+
+    </div>
+
+    @Html.LabelFor(model => model.ApellidoPaterno)
+<div class="input-group mb-3">
+    <span class="input-group-addon glyphicon glyphicon-pencil"  aria-hidden="true" id="basic-addon1"></span>
+
+    @Html.TextBoxFor(model => model.ApellidoPaterno)
+</div>
+
+
+
+
+    <button type="submit">Guardar</button>
+}
+
