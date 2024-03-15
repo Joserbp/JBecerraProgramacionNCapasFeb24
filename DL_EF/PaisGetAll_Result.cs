@@ -11,11 +11,9 @@ namespace DL_EF
 {
     using System;
     
-    public partial class UsuarioGetAll_Result
+    public partial class PaisGetAll_Result
     {
-        public int IdUsuario { get; set; }
-        public string NombreUsuario { get; set; }
-        public string ApellidoPaterno { get; set; }
-        public string ApellidoMaterno { get; set; }
+        public int IdPais { get; set; }
+        public string Nombre { get; set; }
     }
 }

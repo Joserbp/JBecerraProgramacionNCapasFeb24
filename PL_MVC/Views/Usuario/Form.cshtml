@@ -8,23 +8,75 @@
 
 @using (Html.BeginForm("Form", "Usuario", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    @Html.LabelFor(model => model.ApellidoMaterno, new { @class = "", @placeholder = "Nombre Usuario" })
-    <div class="input-group">
-        <span class="input-group-addon glyphicon glyphicon-pencil"  id="basic-addon1">@@</span>
-        @Html.TextBoxFor(model => model.Nombre, new { @class = "", @placeholder = "Nombre Usuario" })
-
+    @Html.LabelFor(model => model.Nombre)
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1"><i class="bi bi-pencil"></i></span>
+        @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", @placeholder = "Nombre Usuario" })
     </div>
 
     @Html.LabelFor(model => model.ApellidoPaterno)
-<div class="input-group mb-3">
-    <span class="input-group-addon glyphicon glyphicon-pencil"  aria-hidden="true" id="basic-addon1"></span>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1"><i class="bi bi-pencil"></i></span>
+        @Html.TextBoxFor(model => model.ApellidoMaterno, new { @class = "form-control", @placeholder = "Nombre Usuario" })
+    </div>
 
-    @Html.TextBoxFor(model => model.ApellidoPaterno)
-</div>
+    @Html.LabelFor(model => model.ApellidoPaterno)
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1"><i class="bi bi-pencil"></i></span>
+        @Html.TextBoxFor(model => model.ApellidoMaterno, new { @class = "form-control", @placeholder = "Nombre Usuario" })
+    </div>
 
+    @Html.LabelFor(model => model.Direccion.Estado.Pais)
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1"><i class="bi bi-pencil"></i></span>
+        @Html.DropDownListFor(model => model.Direccion.Estado.Pais.IdPais, new SelectList(Model.Direccion.Estado.Pais.Paises, "IdPais", "Nombre"), "Selecciona una opcion", new { @id = "ddlPais" })
+    </div>
 
+    @Html.LabelFor(model => model.Direccion.Estado)
+    if (Model.Direccion.Estado.Estados != null)
+    {
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1"><i class="bi bi-pencil"></i></span>
+            @Html.DropDownListFor(model => model.Direccion.Estado.IdEstado, new SelectList(Model.Direccion.Estado.Estados, "IdEstado", "Nombre"), "Selecciona una opcion", new { @id = "ddlEstado" })
+        </div>
 
+    }
+    else
+    {
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1"><i class="bi bi-pencil"></i></span>
+            @Html.DropDownListFor(model => model.Direccion.Estado.IdEstado, new SelectList(String.Empty), "Selecciona una opcion", new { @id = "ddlEstado" })
+        </div>
+    }
 
-    <button type="submit">Guardar</button>
+    <input type="file" name="Imagen" id="Imagen" onchange="Valida()"/>
+
+    <button class="btn btn-success" type="submit">Guardar</button>
 }
+
+@Scripts.Render("~/bundles/jquery")
+<script>
+    $(document).ready(function () {
+        $('#ddlPais').change(function () {
+           $('#ddlEstado').empty();
+           $.ajax({
+                url: '@Url.Action("EstadoGetByIdPais")',
+                type: 'POST',
+                data: { IdPais: $('#ddlPais').val() },
+                dataType: 'JSON',
+               success: function (estados) {
+                   $('#ddlEstado').append('<option value= 0> Seleccion una opcion</option>');
+                   $.each(estados, function(i,objEstado){
+                       $('#ddlEstado').append('<option value=' + objEstado.IdEstado + '>' + objEstado.Nombre + '</option>');
+                   })
+
+                },
+                error: function (result) {
+                    //Alert
+                }
+            });
+        });
+    });
+
+</script>
 

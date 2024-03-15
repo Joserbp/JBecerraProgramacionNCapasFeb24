@@ -17,6 +17,15 @@
 </div>
 <Br />
 
+<div>
+    @using (Html.BeginForm("GetAll", "Usuario", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.TextBoxFor(model => Model.Nombre)
+        @Html.TextBoxFor(model => Model.ApellidoPaterno)
+        @Html.TextBoxFor(model => Model.ApellidoMaterno)
+        <input type="submit" value="Buscar"/>
+    }
+    </div>
 
 <div class="container">
 
@@ -52,7 +61,7 @@
                             <td class="text-center" scope="col">@usuario.IdUsuario</td>
                             <td class="text-center" scope="col">@usuario.Nombre</td>
                             <td class="text-center" scope="col">@usuario.ApellidoPaterno</td>
-                            <td class="text-center" scope="col">@usuario.Direccion.Calle + ',' + @usuario.Direccion.NumeroExterior @usuario.Direccion.Colonia.Nombre</td>
+                            <td class="text-center" scope="col">@usuario.Direccion.Calle + ',' + @usuario.Direccion.NumeroExterior</td>
                             <td class="text-center" scope="col"><button class="btn btn-danger"></button></td>
                         </tr>
                 }

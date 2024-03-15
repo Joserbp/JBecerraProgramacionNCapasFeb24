@@ -60,6 +60,9 @@
     <Compile Include="Estado.cs">
       <DependentUpon>JBecerraProgramacionNCapas.tt</DependentUpon>
     </Compile>
+    <Compile Include="EstadoGetByIdPais_Result.cs">
+      <DependentUpon>JBecerraProgramacionNCapas.tt</DependentUpon>
+    </Compile>
     <Compile Include="JBecerraProgramacionNCapas.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -79,6 +82,9 @@
       <DependentUpon>JBecerraProgramacionNCapas.tt</DependentUpon>
     </Compile>
     <Compile Include="Pai.cs">
+      <DependentUpon>JBecerraProgramacionNCapas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PaisGetAll_Result.cs">
       <DependentUpon>JBecerraProgramacionNCapas.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

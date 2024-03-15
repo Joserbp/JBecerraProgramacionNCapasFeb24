@@ -11,7 +11,11 @@ namespace PL_MVC.Controllers
         // GET: Usuario
         public ActionResult GetAll()
         {
-            var result = BL.Usuario.GetAllEF();
+            ML.Usuario usuarioBusqueda = new ML.Usuario();
+            usuarioBusqueda.Nombre = "";
+            usuarioBusqueda.ApellidoPaterno = "";
+            usuarioBusqueda.ApellidoMaterno = "";
+            var result = BL.Usuario.GetAllEF(usuarioBusqueda);
             ML.Usuario usuario = new ML.Usuario();
             usuario.Usuarios = result;
             return View(usuario);
@@ -19,18 +23,38 @@ namespace PL_MVC.Controllers
         [HttpGet] // Mostrar el form vacio
         public ActionResult Form()
         {
-            //CONDICIONAL //VACIO //LLENO
-                //IDUSUARIO = 0 ADD ID =! 0 //UPDATE
-            ML.Usuario usuario = new ML.Usuario();  //
-           // usuario.Rol = new ML.Rol();
-           //GETBYID
-           //REMPLAZAR Usuario vacio por lo que recupere de la BD
-            return View(usuario);
+            ML.Usuario usuario = new ML.Usuario();
+            var listPaises = BL.Pais.GetAll();
+            if (listPaises.Item1)
+            {
+                usuario.Direccion = new ML.Direccion();
+                usuario.Direccion.Estado= new ML.Estado();
+                usuario.Direccion.Estado.Pais = new ML.Pais();
+                usuario.Direccion.Estado.Pais.Paises = listPaises.Item3.Paises;
+                return View(usuario);
+            }
+            else
+            {
+                //MODAL
+                return View(usuario);
+            }
+            
         }
 
         [HttpPost]  //Capturar datos
         public ActionResult Form(ML.Usuario usuario)
         {
+            HttpPostedFileBase file = Request.Files["Imagen"];
+            
+            //if (file.ContentLength > 0)
+            //{
+            //    usuario.Imagen = Convert(file);
+            //}
+
+            //LIKE SQL
+            //Comodines 
+            //Operadores logicos SQL
+
             var result = BL.Usuario.Add(usuario);
             if(result == true)
             {
@@ -41,6 +65,20 @@ namespace PL_MVC.Controllers
             }
 
             return View();
+        }
+
+        [HttpPost]
+        public JsonResult EstadoGetByIdPais(int IdPais)
+        {
+            var result = BL.Estado.GetByIdPais(IdPais);
+            if (result.Item1)
+            {
+                return Json(result.Item3.Estados, JsonRequestBehavior.AllowGet);
+            }
+            else{
+                return Json(result.Item2, JsonRequestBehavior.AllowGet);
+            }
+         
         }
     }
 }

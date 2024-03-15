@@ -12,6 +12,6 @@ namespace ML
         public string Calle { get; set; }
         public string NumeroExterior { get; set; }
         //public ML.Usuario Usuario { get; set; }
-        public ML.Colonia Colonia { get; set; }
+        public ML.Estado Estado { get; set; }
     }
 }

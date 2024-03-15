@@ -1,0 +1,36 @@
+﻿@model ML.ErrorExcel
+@{
+    ViewBag.Title = "Get";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Get</h2>
+
+<div class="container">
+
+    @using (Html.BeginForm("Get", "CargaMasiva", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <input type="file" name="ArchivoExcel" />
+        <input type="submit" value="Validar" />
+    }
+</div>
+
+@*@if (Model.Errores  null)
+{
+    <div>
+        <table>
+            <tr>
+                <td>IdRegistro</td>
+                <td>Mensaje</td>
+            </tr>
+        </table>
+    </div>
+}
+else
+{
+    //mensaje de que su archivo esta correcto y ya puede cargalo a la base de datos
+    //Btn de Validar cambiar a Guardar //TEXTO
+    //Cargar la copia
+    //Inabilitar el input Para evitar que suba un archivo nuevo
+    //Se proceso la copia
+}*@

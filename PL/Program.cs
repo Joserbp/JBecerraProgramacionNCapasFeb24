@@ -11,7 +11,8 @@ namespace PL
         static void Main(string[] args)
         {
             //Switch
-            PL.Usuario.GetById();
+            BL.Usuario.CargaMasivaTxt();
+            Console.ReadKey();
         }
     }
 }
