@@ -18,12 +18,9 @@ namespace SL_WebApi.Controllers
         //Verbos HTTP
         //Status Code Http
         //Endpoint
-
         //En un word con capturas del codigo + capturas de postman como se consumio
         //WPS o drive
         //Se manda personal
-
-
         //Endpoint -- Rutas
         [Route("api/Saludo")]
         [HttpGet]
@@ -37,7 +34,7 @@ namespace SL_WebApi.Controllers
         [HttpGet]
         public IHttpActionResult Suma(int numero1 , int numero2)
         {
-            string saludo = "Hola "
+            string saludo = "Hola ";
             //Tipo de retorno JSON, HTTP Status Code 100,200,300 Grupos
             return Content(HttpStatusCode.OK, saludo);
         }
